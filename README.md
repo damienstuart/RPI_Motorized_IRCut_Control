@@ -9,17 +9,7 @@ This python library is used to control the camera LED (and IR filter) on Raspber
 # Prerequisites
 You have to disable the automatic management of camera led in `/boot/config.txt`.  
 ```bash
-$ sudo echo "disable_camera_led=1" >> /boot/config.txt 
-$ sudo reboot
-```
-If permission denied
-you can do 
-
-```bash
-$ sudo nano /boot/config.txt
-```
-add "disable_camera_led=1" at the file end. Then save the file and reboot .
-```bash
+$ echo "disable_camera_led=1" | sudo tee -a /boot/config.txt 
 $ sudo reboot
 ```
 # Installation
@@ -51,6 +41,16 @@ State: 1
 $ sudo ./CameraLED.py off
 State: 0
 ```
+### For Pi4 with UC350 Rev.B  
+```bash
+$ sudo ./IMX219_UC-350_Rev.B_pi4_gpio_ircut_ctl on    
+State: 1
+```
+```bash
+$ sudo ./IMX219_UC-350_Rev.B_pi4_gpio_ircut_ctl off
+State: 0
+```
+![IMAGE ALT TEXT](doc/uc350_rev.B.jpg)  
 ### Python library
 You can use my library in your Camera projects
 ```python
@@ -67,6 +67,8 @@ LED OFF = NO IR filter = Night vision
 ![image](doc/led_off.jpg)  
 LED ON = IR filter = Daily vision  
 ![image](doc/led_on.jpg)  
+
+
 
 # Thanks
 Thanks to Lorenzo Santina for sharing
